@@ -19,6 +19,13 @@ def check(got, want, label):
 
 check.failed = 0
 
+# Istisnolar fayli bölmasa, quyidagi testlarning yarmi tuşunarsiz yiqiladi —
+# şu sababli avval aniq tekşiramiz (bir marta .gitignore uni yutib yuborgan).
+_DATA = Path(__file__).resolve().parents[1] / "yozuv" / "data" / "exceptions.txt"
+if not _DATA.exists() or "Chelsea" not in _DATA.read_text(encoding="utf-8"):
+    print(f"[XATO] istisnolar fayli topilmadi yoki böş: {_DATA}")
+    raise SystemExit(1)
+
 # ---- eski → yangi -------------------------------------------------------
 check(to_new("O'zbek tilida so'zlashamiz"), "Özbek tilida sözlaşamiz", "eski→yangi asosiy")
 check(to_new("to'g'ri"), "töğri", "to'g'ri")

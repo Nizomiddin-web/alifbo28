@@ -1,0 +1,26 @@
+# Konvertatsiya vaqtida ösgarişsiz qoldiriladigan sözlar.
+# Har bir qatorda bitta söz. "#" bilan başlangan qatorlar izoh.
+# Bu yerga s+h yoki c+h alohida talaffuz qilinadigan sözlarni,
+# şuningdek asl imlosi saqlanişi kerak bölgan brend/atoqli otlarni yozing.
+
+# --- s va h alohida talaffuz qilinadigan sözlar ---
+Ishoq
+Ashob
+
+# --- xalqaro brendlar va atoqli otlar (keep_foreign=True bölganda) ---
+@foreign
+Chrome
+Chelsea
+Chevrolet
+Churchill
+Charlie
+Chicago
+Shakespeare
+Shell
+Shakira
+Michael
+Washington
+Sheraton
+Michelin
+Schengen
+Porsche
