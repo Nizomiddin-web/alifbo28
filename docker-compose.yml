@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-time-zone=+00:00
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootparol}
+      MYSQL_DATABASE: ${MYSQL_DB:-yozuvbot}
+      MYSQL_USER: ${MYSQL_USER:-yozuv}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-parol}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot",
+             "-p${MYSQL_ROOT_PASSWORD:-rootparol}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+
+  yozuvbot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # compose içida baza «db» nomi bilan körinadi
+      MYSQL_HOST: db
+      MYSQL_PORT: "3306"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql-data:

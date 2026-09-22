@@ -1,0 +1,15 @@
+[Unit]
+Description=YozuvBot - ozbek alifbosi otkazgichi
+After=network-online.target
+
+[Service]
+Type=simple
+User=yozuvbot
+WorkingDirectory=/opt/yozuvbot
+EnvironmentFile=/opt/yozuvbot/.env
+ExecStart=/opt/yozuvbot/.venv/bin/python -m bot.main
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
