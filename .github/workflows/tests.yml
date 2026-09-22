@@ -5,6 +5,10 @@ on:
     branches: [main, master]
   pull_request:
 
+env:
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: utf-8
+
 jobs:
   test:
     runs-on: ubuntu-latest
